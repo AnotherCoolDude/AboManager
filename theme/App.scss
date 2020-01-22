@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+@import "bulma/bulma.sass";
+
+$switch-background: hsl(0, 0%, 96%);
+$switch-background-active: hsl(0, 0%, 96%);
+$switch-focus: none;
+
+
+@import "bulma-switch/dist/css/bulma-switch.sass";
+
+@import "@fortawesome/fontawesome-free/scss/regular.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+
+
+
+

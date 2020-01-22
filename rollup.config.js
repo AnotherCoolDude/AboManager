@@ -4,8 +4,23 @@ import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
+import autoPreprocess from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
+
+const preprocessOptions = {
+	scss: {
+	  includePaths: [
+		'node_modules',
+		'theme'
+	  ]
+	},
+	postcss: {
+	  plugins: [
+		require('autoprefixer'),
+	  ]
+	}
+  }
 
 export default {
 	input: 'src/main.js',
@@ -19,6 +34,10 @@ export default {
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
+
+			// preProcess
+			preprocess: autoPreprocess(preprocessOptions),
+
 			// we'll extract any component CSS out into
 			// a separate file — better for performance
 			css: css => {
@@ -37,6 +56,9 @@ export default {
 		}),
 		commonjs(),
 
+		//postcss
+		postcss(),
+
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
 		!production && serve(),
@@ -47,13 +69,18 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser(),
-		
-		postcss(),
+		production && terser()
 	],
 	watch: {
 		clearScreen: false
-	}
+	},
+	onwarn: (warning, handler) => {
+        // e.g. don't warn on <marquee> elements, cos they're cool
+        if (warning.code === 'a11y-missing-attribute') return;
+
+        // let Rollup handle all other warnings normally
+        handler(warning);
+    }
 };
 
 function serve() {

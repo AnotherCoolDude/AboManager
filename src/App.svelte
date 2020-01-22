@@ -1,23 +1,32 @@
 <script>
 	export let name;
-	import 'bulma/css/bulma.css';
 
 	import Abolist from './Abolist.svelte';
+	import Filternav from './Filternav.svelte';
+	import Filtergrid from './Filtergrid.svelte';
+
+	import './_layout.svelte';
 </script>
 
 <main class="container">
 	<div class="columns is-centered">
 		<div class="column is-7">
 			<h1>Hello {name}!</h1>
-		</div>
-	</div>
-	<div class="columns is-centered">
-		<div class="column is-7">
 			<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 		</div>
 	</div>
-
-	<Abolist />
+	<div class="columns">
+		<div class="column">
+			<div class="columns is-centered">
+				<div class="column is-7">
+					<Abolist />
+				</div>
+				<div class="column is-3">
+					<Filtergrid/>
+				</div>
+			</div>
+		</div>
+	</div>
 </main>
 
 <style>
