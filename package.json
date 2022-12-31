@@ -23,7 +23,7 @@
     "bulma-switch": "^2.0.0",
     "muuri": "^0.8.0",
     "node-sass": "^4.13.0",
-    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-postcss": "^4.0.2",
     "sirv-cli": "^0.4.4",
     "svelma": "^0.3.0",
     "svelte-grid": "^1.10.6",
